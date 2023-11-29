@@ -91,15 +91,11 @@ function updateOrderById(req, res, next) {
     return next({ status: 400, message: `Order id does not match route id. Order: ${id}, Route: ${orderId}` });
   }
 
-  // Proceed with other validations and updates
-
   const foundOrder = orders[foundOrderIndex];
 
   if (foundOrder.status === "delivered") {
     return next({ status: 400, message: "A delivered order cannot be changed" });
   }
-
-  // Validate other properties like deliverTo, mobileNumber, dishes, etc.
 
   foundOrder.deliverTo = deliverTo || foundOrder.deliverTo;
   foundOrder.mobileNumber = mobileNumber || foundOrder.mobileNumber;
